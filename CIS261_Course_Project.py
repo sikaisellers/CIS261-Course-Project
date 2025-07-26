@@ -1,35 +1,35 @@
-# === Payroll Calculator - Proof of Concept ===
+#Sikai Sellers CIS261 Phase 1
 
-# --- Input Functions ---
+#Input Functions
 def get_employee_name():
     # Prompts user for employee name or 'End' to finish
     return input("Enter employee name (or 'End' to finish): ")
 
 def get_total_hours():
-    # Gets total hours worked as a float
+    #Hours Worked
     return float(input("Enter total hours worked: "))
 
 def get_hourly_rate():
-    # Gets hourly pay rate as a float
+    #Hourly Pay
     return float(input("Enter hourly rate: $"))
 
 def get_tax_rate():
-    # Gets income tax rate in decimal form (e.g., 0.2 for 20%)
+    #income Tax Rate
     return float(input("Enter income tax rate (e.g., 0.2 for 20%): "))
 
 
-# --- Calculation Logic ---
+#Calculations
 def calculate_pay(hours, rate, tax_rate):
-    # Calculates gross pay, tax amount, and net pay
+    #Calculates gross pay, tax amount, and net pay
     gross_pay = hours * rate
     income_tax = gross_pay * tax_rate
     net_pay = gross_pay - income_tax
     return gross_pay, income_tax, net_pay
 
 
-# --- Display Individual Employee Data ---
+#Display Individual Employee Info
 def display_employee_info(name, hours, rate, tax_rate, gross_pay, income_tax, net_pay):
-    # Outputs formatted payroll info for one employee
+    #Payroll for individual employee
     print("\nEmployee Information")
     print(f"Name: {name}")
     print(f"Hours Worked: {hours:.2f}")
@@ -41,9 +41,9 @@ def display_employee_info(name, hours, rate, tax_rate, gross_pay, income_tax, ne
     print("-" * 40)
 
 
-# --- Display Totals for All Employees ---
+#Totals for All Employees
 def display_totals(employee_count, total_hours, total_gross, total_tax, total_net):
-    # Outputs cumulative payroll summary
+    #Payroll summary
     print("\nSummary of All Employees")
     print(f"Total Employees: {employee_count}")
     print(f"Total Hours Worked: {total_hours:.2f}")
@@ -52,20 +52,17 @@ def display_totals(employee_count, total_hours, total_gross, total_tax, total_ne
     print(f"Total Net Pay: ${total_net:.2f}")
 
 
-# === Main Execution Block ===
-
-# --- Totals Initialization ---
+#Totals
 employee_count = 0
 total_hours = 0
 total_gross = 0
 total_tax = 0
 total_net = 0
 
-# --- Input Loop ---
+#Input
 while True:
     name = get_employee_name()
     if name.lower() == "end":
-        # Terminates loop if sentinel value is entered
         break
     hours = get_total_hours()
     rate = get_hourly_rate()
@@ -74,12 +71,11 @@ while True:
     gross_pay, income_tax, net_pay = calculate_pay(hours, rate, tax_rate)
     display_employee_info(name, hours, rate, tax_rate, gross_pay, income_tax, net_pay)
 
-    # Aggregate totals for final summary
+    #Final Totals
     employee_count += 1
     total_hours += hours
     total_gross += gross_pay
     total_tax += income_tax
     total_net += net_pay
 
-# --- Final Summary Output ---
 display_totals(employee_count, total_hours, total_gross, total_tax, total_net)
